@@ -432,7 +432,7 @@ Step 13:
 
 ===========
 
-Check the app... Create should work now... 
+Check the app... Create Post should work now... 
 
 
 Step 14: 
