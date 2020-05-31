@@ -3,7 +3,8 @@ import { ADD_POST, GET_POSTS, GET_POST_BY_ID, DELETE_POST, EDIT_POST } from "../
 import { Post } from '../types/post';
 const POSTS_API_URL = 'https://reqres.in/api/posts';
 
-export const createPost = (data: any) => {
+export const createPost = (data: Post) => {
+
   return (dispatch: any) => {
     // AJAX call to add a post
     return axios.post(POSTS_API_URL, data )
@@ -11,7 +12,7 @@ export const createPost = (data: any) => {
           console.log(response);
           dispatch({
             type: ADD_POST,
-            status: {
+            post: {
               id: response.data.id,
               title: response.data.title,
               body: response.data.body,

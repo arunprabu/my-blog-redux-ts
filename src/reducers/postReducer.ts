@@ -16,6 +16,7 @@ const postReducerDefaultState: Post[] = [];
 const postReducer = (state: any = postReducerDefaultState, action: PostActionTypes) => {
   // Actions will be performed GET, POST, PUT, DELETE 
   // Step 8:
+  debugger;
   
   switch(action.type) {
     case ADD_POST:

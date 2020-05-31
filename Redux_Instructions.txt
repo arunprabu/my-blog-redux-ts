@@ -386,9 +386,8 @@ Step 13:
           in PostForm.tsx 
           
           interface AddPostPageProps {
-            id?: string;
-            title: string;
-            body: string;
+            title?: string;
+            body?: string;
           }
 
           interface AddPostPageState {}
@@ -401,8 +400,39 @@ Step 13:
 
       Step 6: 
       --- 
+      in the PostForm.tsx...
+
+      work with mapStateToProps and mapPropsToDispatch functions 
+      // have the following code at the end of the class 
+
+        interface LinkStateProps {
+          posts: Post[];
+        }
+        interface LinkDispatchProps {
+          onCreatePost: (post: Post) => any;
+        }
+
+        const mapStateToProps = (
+          state: AppState,
+          ownProps: AddPostPageProps
+        ): LinkStateProps => ({
+          posts: state.posts
+        });
+
+        const mapDispatchToProps = (
+          dispatch: ThunkDispatch<any, any, AppActions>,
+          ownProps: AddPostPageProps
+        ): LinkDispatchProps => ({
+          onCreatePost: bindActionCreators(createPost, dispatch)
+        });
+
+
+        export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
         
 
+===========
+
+Check the app... Create should work now... 
 
 
 Step 14: 
