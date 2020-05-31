@@ -27,8 +27,8 @@ const tailLayout = {
 };
 
 interface AddPostPageProps {
-  title: string;
-  body: string;
+  title?: string;
+  body?: string;
 }
 
 interface AddPostPageState {}
