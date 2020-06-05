@@ -39,7 +39,7 @@ const App: FC = () => {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/posts" component={Posts}/>
-                <Route path="/posts/1" component={PostDetails}/>
+                <Route path="/posts/:id" component={PostDetails}/>
               </Switch>
             </div>
           </Content>

@@ -1,25 +1,92 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
-import { Card } from 'antd';
+import { NavLink, RouteComponentProps } from "react-router-dom";
+import { connect } from 'react-redux';
+import { Card, Spin } from 'antd';
 import Title from 'antd/lib/typography/Title';
 
-class PostList extends Component {
+import { ApplicationState } from '../store';
+import { Post } from '../store/posts/types';
+import { fetchRequest } from '../store/posts/actions'
+
+// Separate state props + dispatch props to their own interfaces.
+interface PropsFromState {
+  loading: boolean
+  postList: Post[]
+  errors?: string
+}
+
+// We can use `typeof` here to map our dispatch types to the props, like so.
+interface PropsFromDispatch {
+  fetchRequest: typeof fetchRequest
+}
+
+// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
+type AllProps = PropsFromState & PropsFromDispatch
+
+//const API_ENDPOINT = 'http://jsonplaceholder.typicode.com/posts';
+
+
+class PostList extends Component<AllProps> {
+
+  public componentDidMount() {
+    const { fetchRequest } = this.props;
+    fetchRequest()
+  }
+
   render() {
+    console.log(this.props); 
+    const { postList } = this.props;
+    console.log(postList);
+
+
+    let allPosts = null;
+
+    allPosts = postList.map(post => {
+      return (
+        <Card title={post.title} style={{ width: "100%" }} key={`card${post.id}`}>
+          <p>
+            {post.body}
+          </p>
+          <NavLink to={`/posts/${post.id}`}>View More... </NavLink>
+        </Card>
+      )
+    })
+
     return (
       <>
         <Title level={2}>View Posts</Title>
-        <Card title="Post title 1" style={{ width: "100%" }}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Consequatur officiis hic id at voluptatem modi soluta quas, enim
-            a. Maiores aut quis nobis error ullam temporibus voluptas
-            praesentium amet accusantium.
-          </p>
-          <NavLink to="/posts/1">View More...</NavLink>
-        </Card>
+        
+          { postList && postList.length > 0 ? 
+              allPosts :
+              <Spin size="large" />
+          }
+        
       </>
     )
   }
 }
 
-export default PostList;
+// It's usually good practice to only include one context at a time in a connected component.
+// Although if necessary, you can always include multiple contexts. Just make sure to
+// separate them from each other to prevent prop conflicts.
+const mapStateToProps = ({ posts }: ApplicationState) => {
+  console.log(posts);
+  return {
+    loading: posts.loading,
+    errors: posts.errors,
+    postList: posts.postList
+  }
+}
+
+// mapDispatchToProps is especially useful for constraining our actions to the connected component.
+// You can access these via `this.props`.
+const mapDispatchToProps = {
+  fetchRequest
+}
+
+// Now let's connect our component!
+// With redux v4's improved typings, we can finally omit generics here.
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostList)
