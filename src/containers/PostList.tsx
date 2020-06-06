@@ -36,8 +36,6 @@ class PostList extends Component<AllProps> {
   render() {
     console.log(this.props); 
     const { postList } = this.props;
-    console.log(postList);
-
 
     let allPosts = null;
 

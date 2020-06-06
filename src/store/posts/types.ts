@@ -19,6 +19,8 @@ export type ApiResponse = Record<string, any>
 // personally, I use the `@@context/ACTION_TYPE` convention, to follow the convention
 // of Redux's `@@INIT` action.
 export enum PostsActionTypes {
+  CREATE_REQUEST = '@@posts/CREATE_REQUEST',  // for update post by id
+  CREATE_SUCCESS = '@@posts/CREATE_SUCCESS',   // // for update post by id - success
   FETCH_REQUEST = '@@posts/FETCH_REQUEST',  // for get all posts
   FETCH_SUCCESS = '@@posts/FETCH_SUCCESS',  // for get all posts success
   FETCH_ERROR = '@@posts/FETCH_ERROR',      // for post related errors 

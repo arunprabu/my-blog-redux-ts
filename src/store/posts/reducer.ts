@@ -18,10 +18,19 @@ const initialState: PostsState = {
 // everything will remain type-safe.
 const reducer: Reducer<PostsState> = (state = initialState, action) => {
   switch (action.type) {
-    case PostsActionTypes.FETCH_REQUEST || PostsActionTypes.FETCH_REQUEST_BY_ID 
-          || PostsActionTypes.UPDATE_REQUEST_BY_ID: 
+    case PostsActionTypes.CREATE_REQUEST || 
+         PostsActionTypes.FETCH_REQUEST || 
+         PostsActionTypes.FETCH_REQUEST_BY_ID || 
+         PostsActionTypes.UPDATE_REQUEST_BY_ID: 
       return { ...state, loading: true }
-    
+
+    case PostsActionTypes.CREATE_SUCCESS: 
+      return { 
+            ...state, loading: false, 
+            postList: [...state.postList, action.payload ], 
+            post: action.payload 
+      }
+
     case PostsActionTypes.FETCH_SUCCESS: 
       return { ...state, loading: false, postList: action.payload }
     

@@ -6,5 +6,5 @@ export async function callApi(method: string, url: string, data?: any) {
     },
     body: JSON.stringify(data)
   })
-  return res.json()
+  return res.json();
 }
