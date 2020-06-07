@@ -1,4 +1,4 @@
-import { action } from 'typesafe-actions';
+import { action } from 'typesafe-actions';  // npm i typesafe-actions
 import { PostsActionTypes, Post } from './types'
 
 // Here we use the `action` helper function provided by `typesafe-actions`.
@@ -8,7 +8,7 @@ import { PostsActionTypes, Post } from './types'
 
 
 
-// for post details update
+// for add post
 export const createRequest = (post: Post) => {
   console.log(post);
   return action(PostsActionTypes.CREATE_REQUEST, post)

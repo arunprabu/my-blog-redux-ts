@@ -28,7 +28,8 @@ type AllProps = PropsFromState & PropsFromDispatch
 
 class PostList extends Component<AllProps> {
 
-  public componentDidMount() {
+  componentDidMount() {
+    console.log(this.props);
     const { fetchRequest } = this.props;
     fetchRequest()
   }

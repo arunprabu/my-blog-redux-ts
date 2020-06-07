@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { all, fork } from 'redux-saga/effects'
-import { connectRouter, RouterState } from 'connected-react-router'
+import { connectRouter, RouterState } from 'connected-react-router'; // npm i connected-react-router
 import { History } from 'history'
 
 import postsSaga from './posts/sagas';
@@ -9,14 +9,14 @@ import { PostsState } from './posts/types';
 
 // The top-level state object
 export interface ApplicationState {
-  posts: PostsState
+  posts: PostsState,
   router: RouterState
 }
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
 // using the reducer with the matching name. It's important that the names match exactly, and that
 // the reducer acts on the corresponding ApplicationState property type.
-export const createRootReducer = (history: History) =>
+export const createRootReducer = (history: History) => 
   combineReducers({
     posts: postsReducer,
     router: connectRouter(history)

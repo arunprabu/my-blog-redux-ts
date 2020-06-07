@@ -53,7 +53,6 @@ class PostForm extends Component<AllProps> {
           <Form
             {...layout}
             name="basic"
-            initialValues={{ remember: true }}
             onFinish={this.onFinish}
             onFinishFailed={this.onFinishFailed}
           >

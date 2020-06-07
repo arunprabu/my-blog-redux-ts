@@ -28,13 +28,10 @@ function* watchCreate() {
   yield takeEvery(PostsActionTypes.CREATE_REQUEST, handleCreate)
 }
 
-
-
-
 function* handleFetch() {
   try {
     // To call async functions, use redux-saga's `call()`.
-    const res = yield call(callApi, 'get', API_ENDPOINT)
+    const res = yield call(callApi, 'get', API_ENDPOINT) 
 
     if (res.error) {
       yield put(fetchError(res.error))
@@ -55,6 +52,7 @@ function* handleFetch() {
 function* watchFetchRequest() {
   yield takeEvery(PostsActionTypes.FETCH_REQUEST, handleFetch)
 }
+
 
 function* handleFetchById(action: ReturnType<typeof fetchRequestById>) {
   try {

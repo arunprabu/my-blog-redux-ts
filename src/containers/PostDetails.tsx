@@ -37,13 +37,13 @@ type AllProps = PropsFromState & PropsFromDispatch & RouteComponentProps<RoutePa
 class PostDetails extends Component<AllProps>  {
   state = { visible: false };
 
-  public componentDidMount() {
+  componentDidMount() {
     const { match, getPostById } = this.props;
     
     getPostById(match.params.id);
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     // ideal place for clearing selected post state before leaving the page
   }
 
@@ -64,7 +64,7 @@ class PostDetails extends Component<AllProps>  {
   
     values.id = this.props.post.id;
     console.log('Submitting...', values);
-    this.props.putPostById(values)
+    this.props.putPostById(values);
   };
 
   onFinishFailed = (errorInfo: any) => {
@@ -122,7 +122,6 @@ class PostDetails extends Component<AllProps>  {
                   <Button form="myForm" type="primary" key="submit" htmlType="submit">
                     Update
                   </Button>
-
                 ]}
               >
                 <Form

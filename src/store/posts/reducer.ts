@@ -1,6 +1,4 @@
-// ./src/store/heroes/reducer.ts
-
-import { Reducer } from 'redux'
+import { Reducer } from 'redux';
 import { PostsState, PostsActionTypes } from './types';
 
 
@@ -48,6 +46,7 @@ const reducer: Reducer<PostsState> = (state = initialState, action) => {
         return { ...state, loading: false, status: false}
       }
       
+    
     
     default: 
       return state

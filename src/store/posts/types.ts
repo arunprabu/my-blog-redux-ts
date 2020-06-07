@@ -16,7 +16,8 @@ export type ApiResponse = Record<string, any>
 // be compiled away leaving only the final value in your compiled code.
 //
 // Define however naming conventions you'd like for your action types, but
-// personally, I use the `@@context/ACTION_TYPE` convention, to follow the convention
+// personally, I use the `@@context/ACTION_TYPE` convention, 
+//to follow the convention
 // of Redux's `@@INIT` action.
 export enum PostsActionTypes {
   CREATE_REQUEST = '@@posts/CREATE_REQUEST',  // for update post by id
